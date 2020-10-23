@@ -4,44 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demo Prework</title>
+   <link rel="stylesheet" href="/css/estilo.css">
 </head>
-<style>
-   
-   /* p:first-child{
-    color: pink;
-   }
-   p:last-child{
-    color: red;
-    font-weight: bold;
-   } */
-   /* p:nth-child(2n){
-       color: red;
-   }
-   p:nth-child(2n+1){
-       color: brown;
-   } */
-   /* p::first-letter {
-       color: red;
-       font-size: 8em;
-   } */
-   .caja {
-       background-color: blue;
-       width: 20px;
-       height: 20px;
-       padding: 20px;
-       border: 2px solid #50b6bb;
-       /* box-sizing: border-box; */
-       
-   }
-   .caja1 {
-       background-color: #ffb703;
-       width: 30px;
-       height: 30px;
-       margin: 10px 0px 0px 0px;
-   }
-</style>
+
 <body>
-   <div class="caja"></div>
-   <div class="caja1"></div>
+   <header class="header">
+       <img class="header__img" src="/img/logo-platzi.png" alt="Logo de PlatziVideo">
+       <div class="header__menu">
+           <div class="header__menu--profile"> 
+                <img src="/img/user-icon.png" alt="Avatar del Usuario">
+                <p>Profil</p>
+           </div>
+           <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="#">Cerrar Sesion</a></a></li>
+           </ul>
+       </div>
+   </header>
+  <section class="login"> 
+    <section class="login__container">
+        <h2>Inicio Sesion</h2>
+        <form class="login__container--form" action="">
+            <input class="input" type="text" placeholder="correo">
+            <input class="input" type="password" placeholder="contraseña">
+            <button class="button">Iniciar sesion</button>
+            <div class="login__container--remeber-me">
+                <label>
+                    <input type="checkbox" name="" id="cbox1" value="checkbox"> Recuerdame
+                </label>
+                <a href="/">Olvide mi contraseña</a>
+            </div>
+        </form>
+        <section class="login__container--social-media">
+                <div>
+                    <img src="/img/google-icon.webp" alt="Google">Inicio de Session con Google
+                </div>
+                <div>
+                    <img src="/img/twitter-icon.png" alt="Google">Inicio de Session con Twitter
+                </div>
+        </section>
+        <p class="login__container--register">No tiene ninguna cuenta <a href="/">Registrate</a></p>
+    </section>
+  </section>
+  <footer class="footer">
+    <a href="/">Terminos de uso</a>
+    <a href="/">Declaracion de privacidad</a>
+    <a href="/">Centro de ayuda</a>
+  </footer>
 </body>
 </html>

@@ -1,6 +1,7 @@
 body {
   margin: 0px;
   font-family: "Muli", sans-serif;
+  background: linear-gradient(#faa307, #faa307);
 }
 
 .header {
@@ -36,7 +37,7 @@ body {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.6),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 .login__container--form{
@@ -47,4 +48,121 @@ body {
     font-size: 14px;
 }
 
+.login__container--remember-me {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
 
+.login__container--remember-me a {
+  text-decoration: none;
+  color: brown;
+}
+
+.login__container--remember-me a:hover{
+  text-decoration: underline;
+}
+
+.login__container--social-media > div > a {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.login__container--social-media > div > a > img {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.login__container--register {
+  font-size: 14px;
+ 
+}
+
+.login__container--register a {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.login__container--register a:hover {
+
+  text-decoration: underline;
+}
+
+.input{
+  background-color: transparent;
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 0px;
+  border-bottom: 2px solid white;
+  font-size: 16px;
+  font-family: 'Muli', sans-serif;
+  margin-bottom: 10px;
+  outline: none;
+  height: 50px;
+}
+
+::placeholder {
+  color: white
+}
+
+.button {
+  background-color: rgba(255, 255, 255, 0.1);
+
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  font-family: 'Muli', sans-serif;
+  letter-spacing: 1px;
+  height: 50px;
+  margin: 10px 0px;
+}
+
+.button:hover{
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.footer{
+ display: flex;
+ align-items: center;
+ height: 100px;
+ width: 100%; 
+ 
+}
+.footer a {
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  padding-left: 30px;
+  text-decoration: none;
+}
+.footer a:hover{
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+  .login__container {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    box-shadow: none;
+    width: 100%;
+  }
+  .footer {
+    align-items: center;
+    flex-direction: column;
+    
+  }
+
+   .footer a {
+    font-size: 16px;
+  }
+}

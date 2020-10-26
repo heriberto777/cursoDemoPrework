@@ -92,3 +92,275 @@ Si la función no tiene ningún parámetro, únicamente se escribe:
 
 _Nombre de la función(); _
 
+
+¿Cuándo utilizar una función declarativa y una expresiva?
+Curso Básico de JavaScript
+degranda
+4 de Febrero de 2020
+
+Cuando hablamos de funciones en JavaScript, tenemos dos tipos de funciones: Funciones Declarativas (function declaration / function statement) y Expresiones de función (function expression / funciones anónimas).
+
+Funciones Declarativas:
+En las funciones declarativas, utilizamos la palabra reservada function al inicio para poder declarar la función:
+
+function saludar(nombre) {
+	console.log(`Hola ${nombre}`);
+}
+
+saludar('Diego');
+
+Expresión de función:
+En la expresión de función, la declaración se inicia con la palabra reservada var, donde se generará una variable que guardará un función anónima.
+
+var nombre = function(nombre){
+    console.log(`Hola ${nombre}`)
+}
+
+nombre(‘Diego’);
+
+En la expresión de función, la función podría o no llevar nombre, aunque es más común que se hagan anónimas.
+
+Diferencias:
+A las funciones declarativas se les aplica hoisting, y a la expresión de función, no. Ya que el hoisting solo se aplica en las palabras reservadas var y function.
+"Hoisting es un término que se refiere a cómo funcionan los contextos de ejecución en JavaScript (específicamente las fases de creación y ejecución)."
+Lo que quiere decir que con las funciones declarativas, 
+podemos mandar llamar la función antes de que ésta sea declarada, 
+y con la expresión de función, no, tendríamos que declararla primero, 
+y después mandarla llamar.
+
+Realice un resumen sobre lo que yo entendí de lo que es el hoisting, aunque no sé que tan correcto sea lo que yo aprendi, igual se los dejo esperando les sea de ayuda a entender el concepto de mejor manera:
+
+El Hoisting es un proceso del compilador de JavaScript, que consiste en que la declaracion de las variables y las funciones son llevadas al inicio del codigo, sin importar su posicion, para su procesamiento, sin embargo, la inicializacion de las variables no es llevada al inicio del codigo para su compilacion, sino solo su declaracion, lo cual suele dar espacio a errores cuando se declara una variable sin inicializarla y se procesa en el codigo antes de haber llegado a su inicializacion, lo cual nos suele dar una variable con valor undefined, ya que la variable sí fue almacenada en memoria, pero no se le asigno un valor hasta despues de su ejecución.
+
+Aqui un ejemplo de esto:
+
+saludo();
+
+function saludo() {
+    console.log("Hola " + nombre);
+}
+
+var nombre = "Aaron";
+El output de este codigo seria el siguiente:
+
+Hola undefined
+Debido a que como lo hemos dicho, la variable se tomo en cuenta y se le asigno memoria, sin embargo, el compilador no la inicializo y se le dio el valor de undefined, y con ese valor se ingreso a la funcion, y ya despues de correr la funcion se le asigno el valor.
+
+Este comportamiendo se puede entender facilmente si se comprenden estos dos puntos esenciales:
+
+Las funciones siempre se mueven arriba del scope. Por lo tanto, podemos elegir donde declararlas y usarlas.
+La declaración de las variables se mueven arriba del scope, pero no la asignación. Antes de usar una variable, habrá que crearla y asignarla.
+En base al segundo punto, fue por eso que se cometio el error de usar la variable antes de inicializarla, pues sin problema el compilador le asigna memoria, pero no el valor hasta despues.
+
+Basicamente por pasos, lo que hizo el compilador fue esto:
+
+Tenemos el codigo asi:
+
+saludo();
+
+function saludo() {
+    console.log("Hola " + nombre);
+}
+
+var nombre = "Aaron";
+El compilador toma las funciones y variables y las “sube” en el codigo, sin inicializar variables:
+
+var nombre;
+
+function saludo() {
+    console.log("Hola " + nombre);
+}
+
+saludo();
+
+var nombre = "Aaron";
+Le asigna memoria a la variable y le da el valor de undefined al suceder la asignacion de memoria
+
+var nombre = undefined;
+
+function saludo() {
+    console.log("Hola " + nombre);
+}
+
+saludo();
+
+nombre = "Aaron";
+Y como hemos visto, la variable se asigna como undefined y posteriormente su utiliza al llegar a la linea:
+
+saludos()
+pues ahi lo que hace es ejecutar la funcion que ya fue procesada, pero con un valor de la variable que aun no se le asigno, quedando como undefined.
+
+Despues de correr la funcion, le asigna el valor correcto a la variable ya declarada:
+
+var nombre = "Aaron";
+
+function saludo() {
+    console.log("Hola " + nombre);
+}
+
+saludo();
+
+Pero ya es demasiado tarde, pues la funcion ya fue ejecutada.
+
+Es por eso que se tiene como buena practica declarar e inicializar tanto variables como funciones al inicio de nuestro programa, sin importar donde sean utilizadas, pues de esta manera se evita usarlas antes de ser inicializadas.
+
+Debemos saber que el hoisting solo sucede con las palabras claves var y function, por lo tanto esto nos dice que solo se da en las versiones de ECMAScript 5 o Inferiores, ya que en la version 6 y superiores se permite la declaracion de variables con let y const, que son dos nuevas variables que no activan hoisting.
+
+Scope Global : todo el mundo.
+Scope Local : Las Vegas, y lo que pasa en las vegas, se queda en Las Vegas.
+
+Coerción es la forma en la que podemos cambiar un tipo de valor a otro, existen dos tipos de coerción:
+Coerción implícita = es cuando el lenguaje nos ayuda a cambiar el tipo de valor.
+Coerción explicita = es cuando obligamos a que cambie el tipo de valor.
+
+var pregunta = prompt("Ingresa tu opción: piedra, papel o tijera "); 
+var user = pregunta.toLowerCase();
+var options = ["piedra", "papel", "tijera"];
+var machine = options[Math.floor(Math.random() * 3)];
+
+
+// let numero = 'a';
+//con true los casos van a pasar 
+switch (true) {
+    case (user === machine):
+        console.log('es un empate');
+        break;
+    case (machine === 'piedra' && user === 'papel'):
+        console.log('Ganaste')
+        break;
+    case (machine === 'papel'  && user === 'tijera'):
+        console.log('Ganaste')
+        break;
+    case (machine === 'tijera' && user === 'piedra'):
+        console.log('Ganaste')
+        break;
+    default:
+        console.log('¡Perdiste!');       
+}
+
+Un Array es un tipo de estructura de datos, objeto. Puede guardar datos distintos dentro, guarda los datos en forma de lista.
+.lenght devuelve la longitud del array.
+.push() agrega elementos al final de array.
+.pop() elimina un elemento del array.
+.unshift() agrega un elemento al array, pero lo agrega en primer lugar.
+**.shift() **elimina el elemento que está en el inicio del array.
+**.indexOf ** devuelve la posición de un elemento del array.
+
+
+Los bucles pueden ejecutar un bloque de código varias veces. JavaScript admite diferentes tipos de bucles:
+
+for - recorre un bloque de código varias veces
+
+for/in - recorre las propiedades de un objeto
+
+for/of - recorre los valores de un objeto iterable
+
+while - recorre un bloque de código mientras se cumple una condición específica
+
+do/while - también recorre un bloque de código mientras se cumple una condición específica
+
+
+var estudiantes = ["Maria", "Jose", "Gonzalez", "Glenny", "Elizabeth", "Claribel"];
+
+function saludarEstudiante(estudiantes) {
+    console.log(`Hola, ${estudiantes}`);
+}
+
+for(var i = 0; i < estudiantes.lenght; i++){
+    saludarEstudiante(estudiantes[i]);
+}
+
+for(var estudiante of estudiantes){
+    saludarEstudiante(estudiante)
+}
+
+while
+
+
+
+
+Objetos: JS es un lenguaje que está diseñado en un paradigma de objetos.
+
+Ejemplo de Objeto:
+var miAuto = {
+marca: "Toyota",
+modelo: "Corolla",
+año: 2020
+}
+
+Se pueden agregar propiedades que van a ser una función, se les llama métodos de objetos.
+
+var miAuto = {
+marca: "Toyota",
+modelo: "Corolla",
+año: 2020, 
+detallesDelAuto: function () {
+	console.log(`Auto ${this.modelo} ${this.año}`);
+}
+
+// miAuto.detallesDelAuto();
+//Auto Corolla 2020
+¿Quién es this?
+Es una variable que hace referencia al objeto. En este caso: this = miAuto.
+
+Para palabras mas sencillas…
+Un objeto en programación es una representación abstracta de un objeto en la vida real, sin embargo también puede entenderse como un contenedor de datos.
+Ejemplo:
+Una botella de refresco tiene ciertas características y acciones.-
+Características: altura, volumen, color, contenido, dureza etc…
+Acciones: beber, reciclar, rehusar, aventar, abrir tapa, etc…
+
+Respectivamente a estas características y acciones se les conoce como atributos(características) y métodos(acciones) en programación.
+
+Los objetos son usados para almacenar ciertos datos que de otra manera serían muy sensibles al hackeo, por otro lado un objeto también puede ser el valor de una variable.
+
+A modo de adelanto una clase a su vez es un molde que puede almacenar objetos y esta también como el objeto tiene atributos y métodos que puede heredar a cada uno de esos objetos conocida esta propiedad como herencia, en base a eso la clase this, es la clase principal desde la cual se ejecuta javascript a modo de ejemplo puedes consultar en consola del navegador console.log(this); y te darás una mejor idea.
+
+Un saludo a todos.😃😃😃😃😃😃
+
+
+var miAuto = {
+marca: "Toyota",
+modelo: "Corolla",
+annio: 2020,
+detalleDelAuto: function(){
+    console.log(`Auto ${this.modelo} ${this.annio}`);
+}
+};
+undefined
+miAuto.detalleDelAuto();
+
+
+// Este ejemplo es imaginando que recibimos una lista de 30 carros diferentes y se nos solicita que se almacene esta información, como estamos aprendiendo a usar js por que es un lenguaje cool y no queremos tipiar todo de manera normal y aburrida, usaremos este lenguaje c: así hacemos un pequeño trabajo de separar todas las marcas, modelos y años respectivamente en distintos arrays para así lograr juntarlos en uno solo usando una función constructiva la cual indicara cada auto ingresado con su marca, modelo y año respectivamente.
+
+var marca = ["Audi", "Subaru", "Lexus", "Porsche", "BMW", "Mazda", "Buick", "Toyota", "Kia", "Honda", "Hyundai", "Volvo", "Mini", "Mercedes-Benz", "Volkswagen", "Ford", "Lincoln", "Scion", "Acura", "Chevrolet", "Nissan", "Infiniti", "GMC", "Cadillac", "Dodge", "Land", "Rover", "Mitsubishi", "Jeep", "Fiat"];
+var modelo = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
+var annio = [2020,2019,2018,2020,2020,2020,2018,2018,2020,2020,2020,2018,2018,2020,2020,2019,2020,2020,2019,2019,2020,2020,2019,2019,2019,2020,2019,2019,2018,2020];
+var listaAutos = [];
+function autoN(marca, modelo, annio){
+    this.marca = marca;
+    this.modelo = modelo;
+    this.annio = annio;
+} 
+for (var i = 0; i<30; i++){   
+    var autoNuevo = new autoN(marca[i],modelo[i],annio[i]);
+    listaAutos.push(autoNuevo);
+}
+
+// Luego se nos solicito que filtremos los carros por medio del año actual, ya que deseaban saber la cantidad de autos nuevos ingresados. Gracias a nuestro trabajo esto se podía saber de la siguiente manera:
+
+var autosFiltrados = listaAutos.filter(function(auto){
+    return auto.annio === 2020;
+});
+console.log(autosFiltrados);
+
+// Así logramos obtener una lista con todos los autos del año 2020 c:
+
+// Posterior a eso, se necesitaba obtener una lista urgentemente de las marcas de los 30 autos que acababan de ingresar por razones ajenas que no nos interesan c: Obviando que nosotros ya tenemos esta lista creada xD y queremos usar js para esto, esta tarea es tan sencilla como hacer: 
+
+var marcasRecientes = listaAutos.map(function(auto){
+    return auto.marca;
+});
+console.log(marcasRecientes);
+
+// Así obtenemos nuestra lista de marcas recientemente ingresadas c:

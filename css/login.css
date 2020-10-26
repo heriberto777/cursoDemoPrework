@@ -156,6 +156,18 @@ body {
     box-shadow: none;
     width: 100%;
   }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  h2 {
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .footer {
     align-items: center;
     flex-direction: column;
